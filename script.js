@@ -1,36 +1,24 @@
 // Gallery Configuration
 const galleryImages = [
     {
-        src: 'G2qfJJlaUAAXwUY.jfif',
-        caption: 'The Prophet'
+        src: 'Screenshot 2025-10-07 152005.jpg',
+        caption: 'Solana is Forever'
     },
     {
-        src: 'G2qV8MyWQAA6GVK.jfif',
-        caption: 'Unbonded'
+        src: 'Screenshot 2025-10-07 152614.jpg',
+        caption: 'Forever Movement'
     },
     {
-        src: 'G2qPyqHWsAACrLF.jfif',
-        caption: 'The Cult Awakens'
+        src: 'Screenshot 2025-10-07 152635.jpg',
+        caption: 'Solana Strong'
     },
     {
-        src: 'G2qLumdWAAAFmuD.jfif',
-        caption: 'Eternal Meme'
+        src: 'Screenshot 2025-10-07 152722.jpg',
+        caption: 'The Believers'
     },
     {
-        src: 'G2oqeBnWIAAG-aq.jfif',
-        caption: 'The Prophecy'
-    },
-    {
-        src: 'download.jfif',
-        caption: 'Fallen Legend'
-    },
-    {
-        src: 'GYQgSQyWIAArd47.png',
-        caption: 'The Vision'
-    },
-    {
-        src: 'images.png',
-        caption: 'Pinhead Army'
+        src: 'Screenshot 2025-10-07 152740.jpg',
+        caption: 'Forever'
     }
 ];
 
@@ -55,16 +43,17 @@ function createFloatingImages() {
         floatingImg.style.backgroundImage = `url('${randomImage}')`;
 
         // Random starting position (left side of screen)
-        const leftPosition = Math.random() * 95;
+        const leftPosition = Math.random() * 90;
         floatingImg.style.left = leftPosition + '%';
 
-        // Random size
-        const size = 50 + Math.random() * 100;
-        floatingImg.style.width = size + 'px';
-        floatingImg.style.height = size + 'px';
+        // Tweet-sized dimensions (width x height for tweet screenshots)
+        const width = 500;
+        const height = 150;
+        floatingImg.style.width = width + 'px';
+        floatingImg.style.height = height + 'px';
 
-        // Random animation duration (faster to slower)
-        const duration = 8 + Math.random() * 6;
+        // Random animation duration (slower)
+        const duration = 15 + Math.random() * 10;
         floatingImg.style.animationDuration = duration + 's';
 
         // Add some horizontal drift
@@ -82,20 +71,20 @@ function createFloatingImages() {
         }, duration * 1000 + 500);
     }
 
-    // Spawn images more frequently
+    // Spawn images less frequently
     const spawnInterval = setInterval(() => {
         spawnFloatingImage();
-    }, 600);
+    }, 2000);
 
     // Spawn initial batch with staggered timing
-    for (let i = 0; i < 10; i++) {
-        setTimeout(spawnFloatingImage, i * 200);
+    for (let i = 0; i < 5; i++) {
+        setTimeout(spawnFloatingImage, i * 400);
     }
 
     // Store interval so we can clear it if needed
     window.floatingImageInterval = spawnInterval;
 
-    console.log('Floating images setup complete. Spawning every 600ms');
+    console.log('Floating images setup complete. Spawning every 2000ms');
 }
 
 // Initialize gallery
