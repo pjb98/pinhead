@@ -19,6 +19,22 @@ const galleryImages = [
     {
         src: 'Screenshot 2025-10-07 152740.jpg',
         caption: 'Forever'
+    },
+    {
+        src: 'Screenshot 2025-10-07 154458.jpg',
+        caption: 'Community Support'
+    },
+    {
+        src: 'Screenshot 2025-10-07 154639.jpg',
+        caption: 'Solana Forever'
+    },
+    {
+        src: 'Screenshot 2025-10-07 154714.jpg',
+        caption: 'The Movement'
+    },
+    {
+        src: 'Screenshot 2025-10-07 154740.jpg',
+        caption: 'Forever Strong'
     }
 ];
 
