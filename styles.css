@@ -115,15 +115,21 @@ body {
     box-shadow: 0 2px 20px rgba(255, 255, 255, 0.4);
 }
 
+.ticker-wrapper {
+    display: flex;
+    width: fit-content;
+    animation: ticker 30s linear infinite;
+}
+
 .ticker-content {
     display: inline-block;
     white-space: nowrap;
-    animation: ticker 25s linear infinite;
     font-family: 'Orbitron', sans-serif;
     font-weight: 900;
     font-size: 18px;
     color: var(--bg-black);
     letter-spacing: 3px;
+    padding-right: 0;
 }
 
 @keyframes ticker {
