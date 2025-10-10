@@ -692,31 +692,56 @@ footer p:first-of-type {
 
 /* Responsive */
 @media (max-width: 768px) {
+    /* Hide floating tweets on mobile to reduce clutter */
+    .floating-images {
+        display: none;
+    }
+
+    body {
+        background-size: cover;
+        background-position: center;
+    }
+
     .ticker-content {
         font-size: 14px;
         letter-spacing: 2px;
     }
 
+    .ticker-banner {
+        padding: 12px 0;
+    }
+
     .hero {
-        padding: 80px 24px;
+        padding: 60px 16px;
+    }
+
+    .infinity-symbol {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+        margin-bottom: 15px;
     }
 
     .cta-buttons {
         flex-direction: column;
         align-items: stretch;
         gap: 12px;
+        margin-top: 32px;
     }
 
     .btn {
         width: 100%;
         padding: 14px 28px;
+        font-size: 14px;
     }
 
     .lore-box,
     .legend-box,
     .join-box,
     .contract-box {
-        padding: 40px 24px;
+        padding: 30px 20px;
+    }
+
+    .join-text {
+        font-size: 1.25rem;
     }
 
     .lore-box p,
@@ -730,13 +755,21 @@ footer p:first-of-type {
         margin-bottom: 40px;
     }
 
+    .chart-container {
+        padding: 12px;
+    }
+
+    #dexscreener-embed {
+        height: 400px;
+    }
+
     .lightbox-caption {
         font-size: 1rem;
         bottom: 24px;
     }
 
     section {
-        padding: 30px 24px;
+        padding: 30px 16px;
     }
 
     .contract-address {
