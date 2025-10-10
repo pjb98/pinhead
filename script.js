@@ -1,9 +1,30 @@
-// Profile Picture Images Configuration
+// Tweet Images Configuration for $FOREVER
 const profileImages = [
-    'G20V1CWaAAA3asJ.jfif'
+    'IMG_4603.jpeg',
+    'IMG_4607.jpeg',
+    'IMG_4608.jpeg',
+    'IMG_4609.jpeg',
+    'IMG_4610.jpeg',
+    'IMG_4611.jpeg',
+    'IMG_4612.jpeg',
+    'IMG_4613.jpeg',
+    'IMG_4614.jpeg',
+    'IMG_4615.jpeg',
+    'IMG_4616.jpeg',
+    'IMG_4617.jpeg',
+    'IMG_4618.jpeg',
+    'IMG_4619.jpeg',
+    'IMG_4621.jpeg',
+    'IMG_4622.jpeg',
+    'IMG_4623.jpeg',
+    'IMG_4625.jpeg',
+    'IMG_4626.jpeg',
+    'IMG_4628.jpeg',
+    'IMG_4631.jpeg',
+    'IMG_4632.jpeg'
 ];
 
-// Floating Background Profile Pictures (Anonymous theme)
+// Floating Background Tweets ($FOREVER theme)
 function createFloatingImages() {
     const container = document.getElementById('floatingImages');
 
@@ -12,45 +33,82 @@ function createFloatingImages() {
         return;
     }
 
-    console.log('Starting floating profile pictures animation...');
+    console.log('Starting floating tweets animation...');
+
+    // Track used positions to avoid overlap
+    let usedPositions = [];
+
+    function isPositionValid(left, top, width, height) {
+        const minDistance = 150; // Minimum pixels between tweets
+        for (let pos of usedPositions) {
+            const dx = Math.abs(left - pos.left);
+            const dy = Math.abs(top - pos.top);
+            if (dx < minDistance && dy < minDistance) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     function spawnFloatingImage() {
         const floatingImg = document.createElement('div');
         floatingImg.classList.add('floating-image');
 
-        // Use the main image
+        // Use random image
         const randomImage = profileImages[Math.floor(Math.random() * profileImages.length)];
         floatingImg.style.backgroundImage = `url('${randomImage}')`;
 
-        // Random starting position (across full width)
-        const leftPosition = Math.random() * 90;
+        // Position tweets on the sides to avoid content
+        let leftPosition, topPosition, attempts = 0;
+        do {
+            // Randomly choose left or right side
+            const isLeftSide = Math.random() < 0.5;
+
+            if (isLeftSide) {
+                // Left side: 0-20% from left
+                leftPosition = Math.random() * 20;
+            } else {
+                // Right side: 75-95% from left
+                leftPosition = Math.random() * 20 + 75;
+            }
+
+            // Full vertical range
+            topPosition = Math.random() * 80 + 5;
+            attempts++;
+        } while (!isPositionValid(leftPosition, topPosition, 350, 200) && attempts < 20);
+
         floatingImg.style.left = leftPosition + '%';
+        floatingImg.style.top = topPosition + '%';
 
-        // Profile picture circular dimensions
-        const size = 80 + Math.random() * 120; // Random sizes between 80px and 200px
-        floatingImg.style.width = size + 'px';
-        floatingImg.style.height = size + 'px';
+        // Store position
+        usedPositions.push({left: leftPosition, top: topPosition});
 
-        // Random animation duration
-        const duration = 12 + Math.random() * 8;
+        // Tweet-sized dimensions (rectangular) - smaller boxes
+        const width = 300 + Math.random() * 100; // Width between 300-400px
+        const height = width * 0.56; // Adjust aspect ratio to fit content without blank space
+        floatingImg.style.width = width + 'px';
+        floatingImg.style.height = height + 'px';
+
+        // Random animation duration - shorter display time
+        const duration = 4 + Math.random() * 2;
         floatingImg.style.animationDuration = duration + 's';
 
-        // Add horizontal drift
-        const drift = -30 + Math.random() * 60;
-        floatingImg.style.setProperty('--drift', drift + 'px');
-
         container.appendChild(floatingImg);
-        console.log('Spawned floating profile picture, total images:', container.children.length);
+        console.log('Spawned floating tweet, total images:', container.children.length);
 
-        // Remove after animation completes
+        // Remove after animation completes and clean up position tracking
         setTimeout(() => {
             if (floatingImg.parentNode) {
                 floatingImg.remove();
             }
+            // Remove position from tracking after tweet fades out
+            usedPositions = usedPositions.filter(pos =>
+                pos.left !== leftPosition || pos.top !== topPosition
+            );
         }, duration * 1000 + 500);
     }
 
-    // Spawn images frequently for profile picture cult effect
+    // Spawn images frequently for multiple visible tweets
     const spawnInterval = setInterval(() => {
         spawnFloatingImage();
     }, 1500);
@@ -63,7 +121,7 @@ function createFloatingImages() {
     // Store interval so we can clear it if needed
     window.floatingImageInterval = spawnInterval;
 
-    console.log('Floating profile pictures setup complete. Spawning every 1500ms');
+    console.log('Floating tweets setup complete. Spawning every 1500ms');
 }
 
 // Copy contract address functionality
@@ -221,7 +279,7 @@ function createMatrixRain() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const characters = 'ANON01';
+    const characters = '∞FOREVER01';
     const fontSize = 14;
     const columns = canvas.width / fontSize;
     const drops = Array(Math.floor(columns)).fill(1);
@@ -230,7 +288,7 @@ function createMatrixRain() {
         ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        ctx.fillStyle = '#00ff00';
+        ctx.fillStyle = '#ffffff';
         ctx.font = fontSize + 'px monospace';
 
         for (let i = 0; i < drops.length; i++) {
